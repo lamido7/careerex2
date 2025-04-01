@@ -1,0 +1,60 @@
+/* Navigation Bar */
+nav {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Sections */
+.section {
+    border: 2px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+}
+.section:nth-child(odd) {
+    background-color: #f4f4f4;
+}
+.section:nth-child(even) {
+    background-color: #e0f7fa;
+}
+
+/* Text Styling */
+h2 {
+    color: #007BFF;
+    font-size: 24px;
+}
+p {
+    color: #333;
+    font-size: 18px;
+}
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Image Styling */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+}
