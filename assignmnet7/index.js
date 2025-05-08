@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 8000;
 const MONGO_URL =
   "mongodb+srv://lamido:luffy123@cluster0.heeeu6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
+
 mongoose.connect(MONGO_URL).then(() => {
   console.log("MongoDB connected successfully");
   app.listen(PORT, () => {
@@ -22,6 +23,7 @@ mongoose.connect(MONGO_URL).then(() => {
   });
 });
 
+// api to get all items
 app.get("/all-items", async (req, res) => {
   const allItems = await Item.find();
 
@@ -31,6 +33,7 @@ app.get("/all-items", async (req, res) => {
   });
 });
 
+// api to create an item
 app.post("/create-item", async (req, res) => {
   const { name, description, locationFound, dateFound, claimed } = req.body;
   if (!name || !description) {
@@ -52,6 +55,7 @@ app.post("/create-item", async (req, res) => {
   });
 });
 
+// api to get a single item
 app.get("/one-item/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -66,6 +70,7 @@ app.get("/one-item/:id", async (req, res) => {
   });
 });
 
+// api to edit an item
 app.put("/edit-item/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -83,6 +88,7 @@ app.put("/edit-item/:id", async (req, res) => {
   });
 });
 
+// api to update an item
 app.patch("/update-item/:id", async (req, res) => {
   const { id } = req.params;
   const { locationFound } = req.body;
@@ -115,6 +121,7 @@ app.patch("/update-item/:id", async (req, res) => {
   }
 });
 
+// api to delete an item
 app.delete("/delete-item", async (req, res) => {
   const { id } = req.body;
 
