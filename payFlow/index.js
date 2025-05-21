@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const User = require("./userModel");
-const Wallet = require("./walletModel"); // Ensure Wallet model is imported
+const User = require("./models/userModel");
+const Wallet = require("./models/walletModel"); // Ensure Wallet model is imported
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken"); // Uncommented for token generation
+const walletController = require("./controllers/walletController");
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ const app = express();
 
 // Middleware for parsing JSON
 app.use(express.json());
+
+
 
 const PORT = process.env.PORT || 6000;
 
@@ -131,3 +134,18 @@ app.post("/login", async (req, res) => {
    
   });
 });
+
+// Endpoint to get all users
+app.get('/users', async (req, res) => {
+  try {
+    const users = await User.find().select('-password').populate('wallet', 'balance');
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+// Add route for money transfer between wallets
+app.post("/transfer", walletController.transferMoney);
